@@ -6,7 +6,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Modal from "./Modal";
-import { editTodo } from "@/api";
+import { deleteTodo, editTodo } from "@/api";
 
 interface Props {
   task: ITask;
@@ -24,8 +24,13 @@ export default function Task({ task }: Props) {
       id: task.id,
       text: taskToEdit,
     });
-    setTaskToEdit("");
     setOpenModalEdit(false);
+    router.refresh();
+  };
+
+  const handleDeleteTask = async (id: string) => {
+    await deleteTodo(id);
+    setOpenModalDeleted(false);
     router.refresh();
   };
 
@@ -39,6 +44,7 @@ export default function Task({ task }: Props) {
           className="text-blue-500"
           size={25}
         />
+
         <Modal modalOpen={openModalEdit} setModalOpen={setOpenModalEdit}>
           <form onSubmit={handleSubmitEditTodo}>
             <h3 className="font-bold text-lg">Edit Task</h3>
@@ -56,7 +62,24 @@ export default function Task({ task }: Props) {
             </div>
           </form>
         </Modal>
-        <FaTrashAlt cursor="pointer" className="text-red-500" size={25} />
+
+        <FaTrashAlt
+          onClick={() => setOpenModalDeleted(true)}
+          cursor="pointer"
+          className="text-red-500"
+          size={25}
+        />
+
+        <Modal modalOpen={openModalDeleted} setModalOpen={setOpenModalDeleted}>
+          <h3 className="text-lg">
+            Are you sure, you want to delete this task?
+          </h3>
+          <div className="modal-action">
+            <button onClick={() => handleDeleteTask(task.id)} className="btn">
+              Yes
+            </button>
+          </div>
+        </Modal>
       </td>
     </tr>
   );

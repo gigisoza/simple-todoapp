@@ -1,32 +1,8 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "text": "buy milk with some orange"
-    },
-    {
-      "id": "2",
-      "text": "go to city"
-    },
-    {
-      "id": "3",
-      "text": "go to gym"
-    },
-    {
-      "id": "4",
-      "text": "sdfsdfsdf"
-    },
-    {
-      "id": "5",
-      "text": "gela"
-    },
-    {
-      "id": "f682e456-7a99-4c8e-869f-90f24c7fe3f4",
-      "text": "ra"
-    },
-    {
-      "id": "5a2d6fdd-afa3-4ea7-a1ef-c1eb997e39d4",
-      "text": "set up your daily routine"
+      "id": "4c14590f-ad63-40eb-9d75-cf69021c0a54",
+      "text": "new todo item"
     }
   ]
 }
