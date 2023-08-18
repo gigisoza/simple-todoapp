@@ -4,19 +4,23 @@ import React, { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import Modal from "./Modal";
 import { addTodo } from "@/api";
+import { useRouter } from "next/navigation";
+import { v4 as uuidv4 } from "uuid";
 
 export default function AddTask() {
+  const router = useRouter();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [newTaskValue, setNewTaskValue] = useState<string>("");
 
   const handleSubmitNewTodo = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await addTodo({
-      id: "3",
+      id: uuidv4(),
       text: newTaskValue,
     });
     setNewTaskValue("");
     setModalOpen(false);
+    router.refresh();
   };
 
   return (
